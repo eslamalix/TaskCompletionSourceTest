@@ -18,7 +18,10 @@ namespace TaskCompletionSourceTest
         static async Task Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            WorkInSielnce();//will not wait even with the async and await in the task 
+            Console.WriteLine("main");
             await WorkinNotebad();
+            await WorkInSielnce();// will await all the work to finish 
             Console.WriteLine("Done");
         }
         /// <summary>
@@ -28,7 +31,12 @@ namespace TaskCompletionSourceTest
         /// we always should let the caller who the main method above to take care of the async operation 
         /// </summary>
         /// <returns></returns>
-        
+        public async static Task WorkInSielnce()
+        {
+            Console.WriteLine("WorkInSielnce1");
+            await Task.Delay(5000);
+            Console.WriteLine("WorkInSielnce2");
+        }
         public  static Task<object> WorkinNotebad()
         {
           var source = new TaskCompletionSource<object>();
