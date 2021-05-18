@@ -29,13 +29,16 @@ namespace TaskCompletionSourceTest
         /// return await source.Task;
         /// if we introduced async and awiat to the following method is will inroduce another state machine that is not needed 
         /// we always should let the caller who the main method above to take care of the async operation 
+        /// async introduces a state machine, which can in some situations be unecessary overhead
         /// </summary>
         /// <returns></returns>
-        public async static Task WorkInSielnce()
+        public  static Task WorkInSielnce()
         {
             Console.WriteLine("WorkInSielnce1");
-            await Task.Delay(5000);
-            Console.WriteLine("WorkInSielnce2");
+            
+            return Task.Run(()=>{ 
+                Console.WriteLine("WorkInSielnce2");
+            });
         }
         public  static Task<object> WorkinNotebad()
         {
