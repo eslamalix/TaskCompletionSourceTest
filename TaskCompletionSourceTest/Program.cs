@@ -17,13 +17,29 @@ namespace TaskCompletionSourceTest
         /// <returns></returns>
         static async Task Main(string[] args)
         {
+
+            TryIenumImp();
+
+            Console.ReadLine();
             Console.WriteLine("Hello World!");
-            WorkInSielnce();//will not wait even with the async and await in the task 
+            await WorkInSielnce();//will not wait even with the async and await in the task 
             Console.WriteLine("main");
             await WorkInNotePad();
             await WorkInSielnce();// will await all the work to finish 
             Console.WriteLine("Done");
         }
+
+        private static void TryIenumImp()
+        {
+            var collection = new string[] {"Eslam", "ali", "mai", "Blablablablabla"};
+            var config = new EnumeratorConfig {MinLength = 4, MaxLength = 55, StartWithCapitalLetter = true};
+            var enumerator = new CustomStringEnumerator(collection, config);
+            foreach (var s in enumerator)
+            {
+                Console.WriteLine(s);
+            }
+        }
+
         /// <summary>
         /// public async static Task<object> WorkinNotebad()
         /// return await source.Task;
