@@ -22,7 +22,7 @@ namespace TaskCompletionSourceTest
 
             Console.ReadLine();
             Console.WriteLine("Hello World!");
-            await WorkInSielnce();//will not wait even with the async and await in the task 
+            _ = WorkInSielnce();//will not wait even with the async and await in the task 
             Console.WriteLine("main");
             await WorkInNotePad();
             await WorkInSielnce();// will await all the work to finish 
@@ -48,14 +48,15 @@ namespace TaskCompletionSourceTest
         /// async introduces a state machine, which can in some situations be unecessary overhead
         /// </summary>
         /// <returns></returns>
-        public  static Task WorkInSielnce()
+        private static Task WorkInSielnce()
         {
             Console.WriteLine("WorkInSielnce1");   
             return Task.Run(()=>{ 
                 Console.WriteLine("WorkInSielnce2");
             });
         }
-        public  static Task<object> WorkInNotePad()
+
+        private static Task<object> WorkInNotePad()
         {
           var source = new TaskCompletionSource<object>();
             var process = new Process
