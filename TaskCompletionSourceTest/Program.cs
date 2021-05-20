@@ -20,7 +20,7 @@ namespace TaskCompletionSourceTest
             Console.WriteLine("Hello World!");
             WorkInSielnce();//will not wait even with the async and await in the task 
             Console.WriteLine("main");
-            await WorkinNotebad();
+            await WorkInNotePad();
             await WorkInSielnce();// will await all the work to finish 
             Console.WriteLine("Done");
         }
@@ -34,13 +34,12 @@ namespace TaskCompletionSourceTest
         /// <returns></returns>
         public  static Task WorkInSielnce()
         {
-            Console.WriteLine("WorkInSielnce1");
-            
+            Console.WriteLine("WorkInSielnce1");   
             return Task.Run(()=>{ 
                 Console.WriteLine("WorkInSielnce2");
             });
         }
-        public  static Task<object> WorkinNotebad()
+        public  static Task<object> WorkInNotePad()
         {
           var source = new TaskCompletionSource<object>();
             var process = new Process
@@ -56,8 +55,7 @@ namespace TaskCompletionSourceTest
                 source.SetResult(null);
                 };
             process.Start();
-            
-              return source.Task;
+            return source.Task;
         }
     }
 }
